@@ -44,6 +44,14 @@ Returns a function that when called, will execute `fn` with arguments starting a
 ### asunder.withArgs(start, [end])
 A helper method to generate aliased `asunder.args` functions. For example, `asunder.farg`, `asunder.sarg` and `asunder.targ` are just `asunder.withArgs(0)`, `asunder.withArgs(1)`, and `asunder.withArgs(2)` respectively.  
   
+**Example:**
+```javascript
+/* aliases for first, second, and third arguments */
+asunder.farg = asunder.withArgs(0);
+asunder.sarg = asunder.withArgs(1);
+asunder.targ = asunder.withArgs(2);
+```
+
 ### asunder.farg(fn, [context])
 Returns a function that when called, will exectute `fn` with the first argument passed in, ignoring all other arguments. Optionally, `fn` can be called with a `context`.  
   
