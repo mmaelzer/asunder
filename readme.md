@@ -26,12 +26,14 @@ function onData(data) {
   // oh yiss
 }
 
-// This will print 0 1 2 3 4 to the console (with newlines between).
-[1,2,3,4,5].forEach(a.sarg(printIndex));
+// This will print 1 2 3 4 5 to the console (with newlines between)
+[1,2,3,4,5].forEach(a.farg(console.log, console));
 
-function printIndex(index) {
-  console.log(index);
-}
+// This will print 0 1 2 3 4 to the console (with newlines between).
+[1,2,3,4,5].forEach(a.sarg(console.log, console));
+
+// This will print the entire array to the console 5 times
+[1,2,3,4,5].forEach(a.targ(console.log, console));
 
 ```
 
@@ -82,8 +84,8 @@ function log(n) {
 multi(a.split(log(1), log(2)));
 
 // will print:
-// a
-// b,c
+// args 1 : a
+// args 2 : b,c
 ```
 
 License
