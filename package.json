@@ -1,0 +1,27 @@
+{
+  "name": "asunder",
+  "version": "0.1.0",
+  "description": "A small library useful for splitting apart callbacks by their arguments.",
+  "main": "asunder.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mmaelzer/asunder"
+  },
+  "keywords": [
+    "callback",
+    "callbacks",
+    "functions",
+    "functional",
+    "callback hell",
+    "arguments"
+  ],
+  "author": "Mike Maelzer <mmaelzer@gmail.com>",
+  "license": "MIT",
+  "readmeFilename": "readme.md"
+}
