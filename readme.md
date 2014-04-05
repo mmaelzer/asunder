@@ -16,7 +16,7 @@ Example
 var a = require('asunder');
 var fs = require('fs');
 
-fs.readFile('./node_modules/asunder.js', a.split(onError, onData));
+fs.readFile('./node_modules/asunder/asunder.js', a.split(onError, onData));
 
 function onError(err) {
   // oh noes
@@ -27,13 +27,13 @@ function onData(data) {
 }
 
 // This will print 1 2 3 4 5 to the console (with newlines between)
-[1,2,3,4,5].forEach(a.farg(console.log, console));
+[1,2,3,4,5].forEach(a.farg(console.log));
 
 // This will print 0 1 2 3 4 to the console (with newlines between).
-[1,2,3,4,5].forEach(a.sarg(console.log, console));
+[1,2,3,4,5].forEach(a.sarg(console.log));
 
 // This will print the entire array to the console 5 times
-[1,2,3,4,5].forEach(a.targ(console.log, console));
+[1,2,3,4,5].forEach(a.targ(console.log));
 
 ```
 
