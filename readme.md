@@ -40,6 +40,34 @@ function onData(data) {
 Methods
 -------
 
+### asunder.split(fn1, fn2, ..., fnn)
+Returns a function that splits up the passed in arguments and calls them with a given set of functions. If fewer functions are provided than arguments passed in, the last function will be called with all remaining arguments. Useful for when you want to bubble up errors without the standard `if (err) return callback(err)` pattern.  
+  
+**Example:**
+Suppose this script is called `firstword.js`
+```javascript
+var s = require('asunder').split;
+var fs = require('fs');
+
+function firstWordInFile(file, callback) {
+  fs.readFile(file, {encoding: 'utf8'}, s(callback, function(data) {
+    callback(null, data.split(' ').shift());
+  }));
+}
+
+function log(message) {
+  if (message) console.log(message);
+}
+
+firstWordInFile(process.argv[2], s(log, log));
+```
+```
+$ node firstword.js firstword.js
+> var
+$ node firstword.js firstword.py
+> { [Error: ENOENT, open '..firstword.py'] ... }
+```
+
 ### asunder.args(fn, start, [end], [context])
 Returns a function that when called, will execute `fn` with arguments starting at the zero-based index of `start` and optionally ending at the argument index before `end`. Think of it like calling `Array.prototype.slice` on a set of arguments to pass along to `fn`, because really, that's all this is doing. Optionally define a `context` in which to call `fn`.  
   
@@ -62,31 +90,7 @@ The same as `asunder.farg` but uses the second argument passed in.
   
 ### asunder.targ(fn, [context])
 The same as `asunder.farg` but uses the third argument passed in.  
-  
-### asunder.split(fn1, fn2, ..., fnn)
-Returns a function that splits up the passed in arguments and calls them with a given set of functions. If fewer functions are provided than arguments passed in, the last function will be called with all remaining arguments.  
-  
-**Example:**
-```javascript
-var a = require('asunder');
 
-function multi(callback) {
-  callback('a','b','c');
-}
-
-function log(n) {
-  return function() {
-    var args = Array.prototype.slice.call(arguments);
-    console.log('args', n, ':', args.join(','));
-  };
-}
-
-multi(a.split(log(1), log(2)));
-
-// will print:
-// args 1 : a
-// args 2 : b,c
-```
 
 License
 -------
